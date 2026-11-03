@@ -1,0 +1,5 @@
+langgraph==1.2.19
+langchain==1.4.8
+langchain-groq
+python-dotenv
+ipython

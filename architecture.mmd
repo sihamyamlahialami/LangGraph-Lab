@@ -1,0 +1,21 @@
+flowchart TB
+    START([START / user question]) --> classify[Classifier]
+    classify -->|COURSES| courses[Courses Agent]
+    classify -->|PROGRAMMING| programming[Programming Agent]
+    classify -->|MATHEMATICS| math[Mathematics Agent]
+    classify -->|ADMINISTRATION| admin[Administration Agent]
+    classify -->|GENERAL| general[General Agent]
+    classify -->|EMPTY / ERROR| fallback[Fallback]
+    courses --> decide{Tool call?}
+    programming --> decide
+    math --> decide
+    admin --> decide
+    general --> decide
+    decide -->|No| END([END])
+    decide -->|Yes| tools[Tools: calculator / current_datetime / search_courses]
+    tools -.->|Returns to requesting agent| courses
+    tools -.-> programming
+    tools -.-> math
+    tools -.-> admin
+    tools -.-> general
+    fallback --> END
